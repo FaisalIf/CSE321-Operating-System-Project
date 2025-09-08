@@ -22,8 +22,6 @@ The filesystem image (`.img`) is stored as a normal file on your host OS, but in
   - Inodes (CRC32 of first 120 bytes).
   - Directory entries (XOR of first 63 bytes).
 
----
-
 ## Filesystem Layout
 
 The `.img` file is divided into blocks:
@@ -38,6 +36,7 @@ The `.img` file is divided into blocks:
 
 ### ASCII Diagram of Layout
 
+```
 +------------------+ Block 0
 | Superblock | (filesystem metadata, checksums, layout info)
 +------------------+ Block 1
@@ -64,8 +63,7 @@ After adding files:
 file_14.txt → inode 2
 file_23.txt → inode 3
 file_27.txt → inode 4
-
----
+```
 
 ## Build
 
@@ -75,8 +73,6 @@ Compile both tools with GCC:
 gcc -O2 -std=c17 -Wall -Wextra mkfs_builder.c -o mkfs_builder
 gcc -O2 -std=c17 -Wall -Wextra mkfs_adder.c  -o mkfs_adder
 ```
-
----
 
 ## Usage
 
@@ -109,8 +105,6 @@ gcc -O2 -std=c17 -Wall -Wextra mkfs_adder.c  -o mkfs_adder
 ./mkfs_adder --input fs4.img --output fs5.img --file file_27.txt
 ```
 
----
-
 ## Inspecting the Image
 
 Since this is a **custom FS**, you cannot mount it.
@@ -136,16 +130,12 @@ And file contents:
 
 ```
 
----
-
 ## Limits
 
 - Max file size: 48 KB (12 direct blocks × 4 KB)
 - Max filename length: 58 characters (truncated if longer)
 - Root directory can hold up to 64 entries (4096 ÷ 64 B)
 - Empty files still consume one block
-
----
 
 ## Example Session
 
@@ -165,5 +155,3 @@ echo "Another file" > file2.txt
 hexdump -C fs3.img | grep hello.txt
 hexdump -C fs3.img | grep file2.txt
 ```
-
----
