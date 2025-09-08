@@ -52,7 +52,9 @@ The `.img` file is divided into blocks:
 | Data Region | (actual file and directory contents)
 | |
 +------------------+
+```
 
+```
 Example root directory after creation:
 . → inode 1
 .. → inode 1
