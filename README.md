@@ -157,3 +157,7 @@ echo "Another file" > file2.txt
 hexdump -C fs3.img | grep hello.txt
 hexdump -C fs3.img | grep file2.txt
 ```
+
+---
+
+Done in colaboration with Sriti Peach Catiloc Sikdar and Muftasim Fuad Mahee.
